@@ -4,5 +4,5 @@ testsuite:
     - file://mayhem/testsuite
 
 cmds:
-  - cmd: /src/mayhem/fuzz_merge.py
+  - cmd: /src/mayhem/fuzz_parser.py
     libfuzzer: true
