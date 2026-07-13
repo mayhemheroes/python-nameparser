@@ -1,0 +1,16 @@
+# Mayhem target: python-nameparser human-name parser (Atheris/libFuzzer harness).
+# The cmd binary is the compiled ELF launcher that drives mayhem/fuzz_parser.py; Atheris
+# instruments the nameparser library so the run records coverage (edges).
+# Target name `always-merge-fuzz` is the fork's HISTORICAL Mayhem target slug (kept so the
+# existing run/defect history on app.mayhem.security is not orphaned).
+project: python-nameparser
+target: always-merge-fuzz
+
+cmds:
+  - cmd: /mayhem/nameparser_fuzzer
+    libfuzzer: true
+
+# Seed corpus (file:// URI per the Mayhemfile schema) + the server-accumulated corpus tar.
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/always-merge-fuzz/testsuite
